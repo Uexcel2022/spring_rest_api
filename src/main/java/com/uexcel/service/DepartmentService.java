@@ -10,9 +10,9 @@ public interface DepartmentService {
 
     List<Department> fatchAlldepartList();
 
-    Department fetchDepartmentById(Long departmentId);
+    Department fetchDepartmentById(Long id);
 
-    void deleteDepartmentById(Long departmentId);
+    void deleteDepartmentById(Long id);
 
     Department updateDepartment(Department department);
 }

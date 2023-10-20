@@ -28,4 +28,11 @@ public class ControllerAdviceExceptionHandler {
     public String notFoundException() {
         return "Method Not Allowed";
     }
+
+    @ResponseBody
+    @ExceptionHandler(org.springframework.web.bind.MissingPathVariableException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public String internalServerError() {
+        return "Internal Server Error";
+    }
 }
