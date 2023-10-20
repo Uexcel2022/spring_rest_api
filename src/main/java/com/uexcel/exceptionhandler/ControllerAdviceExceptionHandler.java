@@ -14,4 +14,18 @@ public class ControllerAdviceExceptionHandler {
     public String departmentNotfoundExceptionHandler(DepartmentNotFoundException e) {
         return e.getMessage();
     }
+
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(org.springframework.web.method.annotation.MethodArgumentTypeMismatchException.class)
+    public String MethodArgumentTypeMismatchException() {
+        return "Bad Request";
+    }
+
+    @ResponseBody
+    @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
+    @ExceptionHandler(org.springframework.web.HttpRequestMethodNotSupportedException.class)
+    public String notFoundException() {
+        return "Method Not Allowed";
+    }
 }

@@ -25,20 +25,22 @@ public class DepartmentServiceImp implements DepartmentService {
     }
 
     @Override
-    public Department fetchDepartmentById(Long id) {
-        return departmentRepository.findById(id)
+    public Department fetchDepartmentById(Long departmentId) {
+        return departmentRepository.findById(
+                departmentId)
                 .orElseThrow(
-                        () -> new DepartmentNotFoundException("There is no department having id " + id));
+                        () -> new DepartmentNotFoundException("There is no department having id " + departmentId));
 
     }
 
     @Override
-    public void deleteDepartmentById(Long id) {
-        departmentRepository.findById(id)
+    public void deleteDepartmentById(Long departmentId) {
+        departmentRepository.findById(
+                departmentId)
                 .orElseThrow(
-                        () -> new DepartmentNotFoundException("There is no department having id " + id));
+                        () -> new DepartmentNotFoundException("There is no department having id " + departmentId));
 
-        departmentRepository.deleteById(id);
+        departmentRepository.deleteById(departmentId);
 
         throw new DepartmentNotFoundException("Department deleted.");
 
