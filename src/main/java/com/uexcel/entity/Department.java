@@ -10,15 +10,14 @@ public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long departmentId;
-
     private String departmantName;
-    private String depertmentAdress;
+    private String departmentAddress;
     private String departmentCode;
 
-    public Department(Long departmentId, String departmantName, String depertmentAdress, String departmentCode) {
+    public Department(Long departmentId, String departmantName, String departmentAddress, String departmentCode) {
         this.departmentId = departmentId;
         this.departmantName = departmantName;
-        this.depertmentAdress = depertmentAdress;
+        this.departmentAddress = departmentAddress;
         this.departmentCode = departmentCode;
     }
 
@@ -41,12 +40,12 @@ public class Department {
         this.departmantName = departmantName;
     }
 
-    public String getDepertmentAdress() {
-        return depertmentAdress;
+    public String getdepartmentAddress() {
+        return departmentAddress;
     }
 
-    public void setDepertmentAdress(String depertmentAdress) {
-        this.depertmentAdress = depertmentAdress;
+    public void setdepartmentAddress(String departmentAddress) {
+        this.departmentAddress = departmentAddress;
     }
 
     public String getDepartmentCode() {
@@ -59,8 +58,9 @@ public class Department {
 
     @Override
     public String toString() {
-        return "Department [departmentId=" + departmentId + ", departmantName=" + departmantName + ", depertmentAdress="
-                + depertmentAdress + ", departmentCode=" + departmentCode + "]";
+        return "Department [departmentId=" + departmentId + ", departmantName=" + departmantName
+                + ", departmentAddress="
+                + departmentAddress + ", departmentCode=" + departmentCode + "]";
     }
 
 }
