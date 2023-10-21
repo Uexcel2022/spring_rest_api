@@ -77,9 +77,9 @@ public class DepartmentServiceImp implements DepartmentService {
 
         }
 
-        if (Objects.nonNull(newDepartment.getdepartmentAddress())
-                && !"".equalsIgnoreCase(newDepartment.getdepartmentAddress())) {
-            department.setdepartmentAddress(newDepartment.getdepartmentAddress());
+        if (Objects.nonNull(newDepartment.getDepartmentAddress())
+                && !"".equalsIgnoreCase(newDepartment.getDepartmentAddress())) {
+            department.setDepartmentAddress(newDepartment.getDepartmentAddress());
 
         }
 
@@ -87,7 +87,7 @@ public class DepartmentServiceImp implements DepartmentService {
     }
 
     @Override
-    public Department findByDepartmantName(String departmantName) {
+    public Department findDepartmantByName(String departmantName) {
 
         Department department = departmentRepository.findByDepartmantNameIgnoreCase(departmantName);
         if (Objects.isNull(department)) {
