@@ -4,14 +4,18 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long departmentId;
+
+    @NotBlank(message = "Department Name Is Required")
     private String departmantName;
     private String departmentAddress;
+    @NotBlank(message = "Department departmentCode Is Required")
     private String departmentCode;
 
     public Department(Long departmentId, String departmantName, String departmentAddress, String departmentCode) {

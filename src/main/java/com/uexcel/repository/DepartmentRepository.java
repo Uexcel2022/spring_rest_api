@@ -7,4 +7,7 @@ import com.uexcel.entity.Department;
 
 @Repository
 public interface DepartmentRepository extends JpaRepository<Department, Long> {
+    public Department findByDepartmantName(String departmantName);
+
+    public Department findByDepartmantNameIgnoreCase(String departmantName);
 }

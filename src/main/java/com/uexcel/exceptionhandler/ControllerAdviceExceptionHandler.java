@@ -35,4 +35,33 @@ public class ControllerAdviceExceptionHandler {
     public String internalServerError() {
         return "Internal Server Error";
     }
+
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(org.springframework.web.bind.MethodArgumentNotValidException.class)
+    public String validationExceptHandler(org.springframework.web.bind.MethodArgumentNotValidException e) {
+
+        String mainMassage = e.getMessage().substring(e.getMessage().indexOf("default message"));
+
+        String message = mainMassage.substring(51);
+
+        boolean isDoubleMassage = message.contains("default message");
+
+        if (!isDoubleMassage) {
+            return message.replace("]", "").replace("[", "");
+        }
+
+        return message.substring(message.indexOf("default message")).substring(51).replace("]", "")
+                .replace("[", "")
+                + "\n" + message.substring(0, message.indexOf("Field")).replace("]", "").replace("[", "");
+
+    }
+
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(org.springframework.http.converter.HttpMessageNotReadableException.class)
+    public String invalidJSONSyntax(org.springframework.http.converter.HttpMessageNotReadableException e) {
+        return "Invlid syntaxt";
+    }
+
 }

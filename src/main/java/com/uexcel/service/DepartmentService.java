@@ -1,6 +1,7 @@
 package com.uexcel.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.uexcel.entity.Department;
 
@@ -10,9 +11,11 @@ public interface DepartmentService {
 
     List<Department> fatchAlldepartList();
 
-    Department fetchDepartmentById(Long id);
+    Department fetchDepartmentById(Long departmantId);
 
-    void deleteDepartmentById(Long id);
+    void deleteDepartmentById(Long departmantId);
 
-    Department updateDepartment(Department department);
+    Department updateDepartment(Long departmantId, Department department);
+
+    Department findByDepartmantName(String departmantName);
 }
