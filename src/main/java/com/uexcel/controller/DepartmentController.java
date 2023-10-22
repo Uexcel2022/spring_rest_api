@@ -2,10 +2,10 @@ package com.uexcel.controller;
 
 import java.util.List;
 
-import org.apache.juli.logging.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uexcel.entity.Department;
+import com.uexcel.exceptionhandler.DataBindingException;
+import com.uexcel.exceptionhandler.DepartmentNotFoundException;
 import com.uexcel.service.DepartmentService;
 
 import jakarta.validation.Valid;
@@ -28,9 +30,14 @@ public class DepartmentController {
     private final Logger LOGGER = LoggerFactory.getLogger(DepartmentController.class);
 
     @PostMapping("/departments")
-    public Department saveDepartment(@Valid @RequestBody Department department) {
+    public Department saveDepartment(@Valid @RequestBody Department department, BindingResult result) {
         LOGGER.info("Inside the post mapping method - Department Controller");
+        if (result.hasErrors()) {
+
+            throw new DataBindingException(result.toString());
+        }
         return departmentService.saveDepartment(department);
+
     }
 
     @GetMapping("/departments")

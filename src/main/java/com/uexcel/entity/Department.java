@@ -20,13 +20,15 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long departmentId;
 
-    @NotBlank(message = "Department Name Is Required")
+    @NotBlank(message = "?#Department Name Is Required#?")
     private String departmantName;
 
     private String departmentAddress;
 
-    @NotBlank(message = "Department departmentCode Is Required")
+    @NotBlank(message = "?#Department Code Is Required#?")
     private String departmentCode;
+
+    /* Commented out because lombok was addeded */
 
     // public Department(Long departmentId, String departmantName, String
     // departmentAddress, String departmentCode) {
