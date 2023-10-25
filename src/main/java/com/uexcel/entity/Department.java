@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@Builder // builder is used to allow the constructor acecept different number of obojects
 public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

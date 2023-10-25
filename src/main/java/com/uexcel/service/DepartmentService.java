@@ -12,7 +12,7 @@ public interface DepartmentService {
 
     Department fetchDepartmentById(Long departmantId);
 
-    void deleteDepartmentById(Long departmantId);
+    ReturnDeleteMessage deleteDepartmentById(Long departmantId);
 
     Department updateDepartment(Long departmantId, Department department);
 

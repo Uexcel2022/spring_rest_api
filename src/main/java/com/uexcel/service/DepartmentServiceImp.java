@@ -1,9 +1,12 @@
 package com.uexcel.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.uexcel.entity.Department;
@@ -31,18 +34,26 @@ public class DepartmentServiceImp implements DepartmentService {
         return departmentRepository.findById(
                 departmantId)
                 .orElseThrow(
-                        () -> new DepartmentNotFoundException("No department found"));
+                        () -> new DepartmentNotFoundException("Department not available"));
 
     }
 
     @Override
-    public void deleteDepartmentById(Long departmantId) {
-        departmentRepository.findById(departmantId).orElseThrow(
-                () -> new DepartmentNotFoundException("No department found"));
+    public ReturnDeleteMessage deleteDepartmentById(Long departmantId) {
 
-        departmentRepository.deleteById(departmantId);
+        String time = LocalDateTime.now().toString().substring(0, LocalDateTime.now().toString().indexOf("."))
+                .replace("T", " ");
+        ReturnDeleteMessage msg;
 
-        throw new DepartmentNotFoundException("The department has been deleted.");
+        Optional<Department> dpt = departmentRepository.findById(departmantId);
+        if (dpt.isPresent()) {
+            departmentRepository.deleteById(departmantId);
+            msg = new ReturnDeleteMessage(time, HttpStatus.OK, "The department has been deleted successfully");
+            return msg;
+        }
+        msg = new ReturnDeleteMessage(time, HttpStatus.NOT_FOUND, "The department is not available");
+
+        return msg;
 
     }
 
@@ -63,7 +74,7 @@ public class DepartmentServiceImp implements DepartmentService {
     @Override
     public Department updateDepartment(Long departmantId, Department newDepartment) {
         Department department = departmentRepository.findById(departmantId).orElseThrow(
-                () -> new DepartmentNotFoundException("No department found"));
+                () -> new DepartmentNotFoundException("Department not available"));
 
         if (Objects.nonNull(newDepartment.getDepartmantName())
                 && !"".equalsIgnoreCase(newDepartment.getDepartmantName())) {
@@ -92,7 +103,7 @@ public class DepartmentServiceImp implements DepartmentService {
         Department department = departmentRepository.findByDepartmantNameIgnoreCase(departmantName);
         if (Objects.isNull(department)) {
 
-            throw new DepartmentNotFoundException("No department found");
+            throw new DepartmentNotFoundException("Department not available");
         }
         return departmentRepository.findByDepartmantNameIgnoreCase(departmantName);
     }

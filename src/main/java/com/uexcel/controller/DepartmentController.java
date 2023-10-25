@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.uexcel.entity.Department;
 import com.uexcel.exceptionhandler.DataBindingException;
-import com.uexcel.exceptionhandler.DepartmentNotFoundException;
 import com.uexcel.service.DepartmentService;
+import com.uexcel.service.ReturnDeleteMessage;
 
 import jakarta.validation.Valid;
 
@@ -52,9 +52,11 @@ public class DepartmentController {
     }
 
     @DeleteMapping("/departments/{id}")
-    public void deleteDepartment(@PathVariable("id") Long departmentId) {
+    public ReturnDeleteMessage deleteDepartment(@PathVariable("id") Long departmentId) {
+        ReturnDeleteMessage msg;
         LOGGER.info("Inside Delete method - Department Controller");
-        departmentService.deleteDepartmentById(departmentId);
+        msg = departmentService.deleteDepartmentById(departmentId);
+        return msg;
     }
 
     // @PutMapping("/departments")
