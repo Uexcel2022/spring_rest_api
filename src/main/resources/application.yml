@@ -1,0 +1,30 @@
+welcome:
+  message: This is My First Spring Boot Deployment!!!
+---
+spring:
+  config:
+    activate:
+      on-profile: devDB
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    password: jvman19
+    url: jdbc:mariadb://localhost:3306/Departments_db
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+---
+spring:
+  config:
+    activate:
+      on-profile: prodDB
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    password: jvman19
+    url: jdbc:mariadb://localhost:3306/Department_prodDB
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

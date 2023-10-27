@@ -33,7 +33,7 @@ public class DepartmentRepositoryTest {
     }
 
     @Test
-    @Disabled
+    // @Disabled
     public void dbTest() {
         Department found = departmentRepository.findById(1L).get();
         assertEquals(found.getDepartmantName(), "EEC");

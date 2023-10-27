@@ -48,7 +48,7 @@ public class DepartmentServiceTest {
 
     @Test
     @DisplayName("Get Data By Valid Department Name")
-    @Disabled // to disable test case
+    // @Disabled // to disable test case
     public void WhenDepartmentNameMatchThenDepartmentFound() {
         String departmentName = "ICT";
         Department found = departmentService.findDepartmantByName(departmentName);
