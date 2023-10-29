@@ -2,7 +2,6 @@ package com.uexcel.exceptionhandler;
 
 import java.time.LocalDateTime;
 
-import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters.LocalDateConverter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
